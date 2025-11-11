@@ -1,0 +1,119 @@
+/* --- FOOTER UTAMA --- */
+.main-footer {
+  background-color: #1f2937; /* Background gelap */
+  color: #cbd5e1; /* Warna teks terang */
+  padding-top: 50px;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px 40px 50px;
+  flex-wrap: wrap; /* Agar kolom turun di layar kecil */
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1; /* Memberi ruang yang sama di awal */
+  min-width: 200px; /* Minimal lebar kolom */
+}
+
+/* --- JUDUL KOLOM --- */
+.footer-col h4 {
+  font-size: 1.2rem;
+  color: #f3f4f6;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* --- KOLOM BRANDING --- */
+.footer-branding .footer-logo {
+  font-size: 1.8rem;
+  color: #f8f8f8; /* Warna aksen pada logo */
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.footer-tagline,
+.footer-contact-info {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  color: #9ca3af;
+}
+
+/* --- KOLOM LINK (Navigasi & Sosial) --- */
+.footer-links ul,
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li,
+.footer-social li {
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: #6366f1; /* Hover aksen */
+  transform: translateX(5px);
+}
+
+/* --- BARIS COPYRIGHT (BOTTOM) --- */
+.footer-bottom {
+  border-top: 1px solid #374151; /* Garis pemisah */
+  padding: 20px 50px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* --- RESPONSIVE UNTUK LAYAR KECIL --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px 30px 20px;
+  }
+
+  .footer-tagline{
+    text-align: justify;
+  }
+  
+  .footer-col {
+    margin-bottom: 30px;
+  }
+
+  .footer-links ul,
+  .footer-social ul {
+    /* Memastikan link tetap rata tengah di mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links a,
+  .footer-social a {
+    /* Hapus translate X agar tidak aneh di tengah */
+    transform: none;
+  }
+
+  .footer-bottom {
+    padding: 20px 20px;
+  }
+}

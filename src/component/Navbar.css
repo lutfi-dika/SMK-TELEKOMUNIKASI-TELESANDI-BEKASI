@@ -1,0 +1,128 @@
+/* Navbar dasar */
+.navbar {
+  width: 100%;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 30px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #040404;
+}
+
+/* Link menu */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #02a7c8;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #101010;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Close button untuk mobile */
+.nav-links .close-btn {
+  display: none; /* default sembunyi desktop */
+  font-size: 2rem;
+  color: #101010;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: 0.3s;
+}
+
+.nav-links .close-btn:hover {
+  color: #0c89c4;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed; /* supaya menutupi konten */
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9f9;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 80px;
+    transform: translateX(100%); /* disembunyikan awalnya */
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    transform: translateX(0); /* muncul saat hamburger di klik */
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+
+  .nav-links .close-btn {
+    display: block; /* tampil di mobile */
+  }
+}
+
+/* Optional: smooth scroll */
+html {
+  scroll-behavior: smooth;
+}

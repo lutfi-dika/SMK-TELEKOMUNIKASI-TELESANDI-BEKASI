@@ -1,0 +1,68 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+
+  /* Parallax background */
+  background-image: url("https://lh5.googleusercontent.com/p/AF1QipOFoxvEbI3-olcyM1BNlFGrrzzynfPeA8z4sLO-=w2048-h2048-k-no"); /* ganti dengan path gambar kamu */
+  background-attachment: fixed; /* 🔑 efek parallax */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 7%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* overlay supaya teks terlihat jelas */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  color: white;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-top: 15px;
+  color: rgb(8, 122, 183);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* parallax tidak selalu didukung mobile, jadi kita fallback */
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+}

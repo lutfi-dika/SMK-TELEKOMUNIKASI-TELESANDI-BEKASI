@@ -1,0 +1,127 @@
+.visi-misi-section {
+  padding: 150px 150px; /* lebih lega di desktop */
+  background-color: #ffffff;
+  color: #333;
+  text-align: center;
+}
+
+.visi-misi-section h2 {
+  font-size: 3.5rem; /* lebih besar */
+  color: #004aad;
+  margin-bottom: 80px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* jarak lebih besar antar card */
+  flex-wrap: wrap;
+  max-width: 1600px; /* container lebih lebar */
+  margin: auto;
+}
+
+.card {
+  background-color: #f1f5f9;
+  padding: 50px 40px; /* lebih besar */
+  border-radius: 12px;
+  flex: 1 1 400px; /* card lebih lebar */
+  max-width: 500px; /* card lebih besar */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+  color: #004aad;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.card p,
+.card ul {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.card ul {
+  padding-left: 25px;
+}
+
+.card li {
+  margin-bottom: 12px;
+}
+
+/* Hover efek */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Medium Screens */
+@media (max-width: 1440px) {
+  .visi-misi-section {
+    padding: 120px 80px;
+  }
+  .visi-misi-section h2 {
+    font-size: 3rem;
+  }
+  .cards-container {
+    gap: 60px;
+  }
+  .card {
+    max-width: 450px;
+    padding: 40px 30px;
+  }
+  .card h3 {
+    font-size: 1.6rem;
+  }
+  .card p,
+  .card ul {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive Tablet */
+@media (max-width: 1024px) {
+  .visi-misi-section {
+    padding: 100px 50px;
+  }
+  .visi-misi-section h2 {
+    font-size: 2.5rem;
+  }
+  .cards-container {
+    gap: 40px;
+  }
+  .card {
+    max-width: 400px;
+    padding: 35px 25px;
+  }
+  .card h3 {
+    font-size: 1.4rem;
+  }
+  .card p,
+  .card ul {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .visi-misi-section {
+    padding: 80px 30px;
+  }
+  .visi-misi-section h2 {
+    font-size: 2rem;
+  }
+  .card {
+    max-width: 90%;
+    padding: 25px 15px;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  .card p,
+  .card ul {
+    font-size: 0.95rem;
+  }
+}

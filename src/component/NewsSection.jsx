@@ -29,7 +29,7 @@ const news = [
             "https://images.unsplash.com/photo-1581091870624-f154edfd20d0?auto=format&fit=crop&w=600&q=80",
     },
      {
-        title: "Lomba TELCUP ",
+        title: "Lomba TELSCUP ",
         date: "29 November 2025",
         summary:
             "SMK TELEKOMUNIKASI TELESANDI BEKASI mengadakan lomba Telscup 6.0 2025",

@@ -1,0 +1,59 @@
+/* --- CONTAINER UTAMA (FIXED) --- */
+.running-text-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    /* Mengembalikan styling ke versi clean */
+    border-top: 3px solid #6366f1;
+    border-bottom: 3px solid #6366f1;
+    background-color: #eef2ff; 
+    padding: 10px 0;
+    overflow: hidden;
+    
+    /* Opsional: Menghapus distorsi */
+    transform: none; 
+    box-shadow: none;
+    margin-bottom: 20px; /* Memberi sedikit jarak ke section berikutnya */
+}
+
+/* --- LOGO AREA --- */
+.logo-area {
+    padding: 0 20px;
+    flex-shrink: 0; 
+}
+
+.logo-image {
+    width: 40px; 
+    height: 40px;
+    display: block;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+    animation: none; /* Menghapus animasi kedipan */
+}
+
+/* --- MARQUEE AREA (Wadah Teks) dan TEKS BERJALAN --- */
+.marquee-area {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.running-text {
+    display: inline-block;
+    padding-left: 100%; 
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e3a8a; 
+    animation: marquee-scroll 30s linear infinite; 
+    text-shadow: none; /* Menghapus text shadow ekstrem */
+}
+
+/* ANIMASI CSS Keyframes dan INTERAKSI TETAP SAMA */
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.running-text-container:hover .running-text {
+    animation-play-state: paused;
+}

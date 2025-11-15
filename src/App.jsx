@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./component/Navbar";
 import HeroSection from "./component/HeroSection";
+import Marquee from "./component/Marquee";
 import AboutSection from "./component/AboutSection";
 import VisiMisiSection from "./component/VisiMisiSection";
 import GallerySection from "./component/Gallery";
@@ -107,6 +108,7 @@ function App() {
           <Route path="/" element={
             <>
               <HeroSection />
+              <Marquee />
               <AboutSection />
               <VisiMisiSection />
               <GallerySection />

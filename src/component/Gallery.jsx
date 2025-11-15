@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Gallery.css";
 
 const images = [
@@ -11,12 +13,25 @@ const images = [
 ];
 
 const GallerySection = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // durasi animasi (ms)
+            once: false,    // biar animasinya muncul lagi setiap scroll
+            easing: "ease-in-out",
+        });
+    }, []);
+
     return (
         <section id="gallery" className="gallery-section">
-            <h2>Galeri Kegiatan</h2>
+            <h2 data-aos="fade-up">Galeri Kegiatan</h2>
             <div className="gallery-grid">
                 {images.map((img, index) => (
-                    <div key={index} className="gallery-item">
+                    <div
+                        key={index}
+                        className="gallery-item"
+                        data-aos="fade-up"
+                        data-aos-delay={index * 100} // jeda animasi tiap gambar
+                    >
                         <img src={img} alt={`Kegiatan ${index + 1}`} />
                     </div>
                 ))}

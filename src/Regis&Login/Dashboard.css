@@ -1,0 +1,338 @@
+/* =========================
+   Container Umum
+========================= */
+.dashboard-container,
+.jadwal-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header */
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-title,
+.jadwal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.dashboard-subtitle {
+  color: #555;
+}
+
+/* =========================
+   Cards umum (Dashboard Murid / Guru)
+========================= */
+.dashboard-cards-wrapper {
+  margin-bottom: 2rem;
+}
+
+.dashboard-cards-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Card dashboard */
+.dashboard-card {
+  padding: 1rem;
+  border-radius: 1rem;
+  flex: 1 1 250px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.3s;
+  text-align: center;
+}
+
+/* Card putih / netral */
+.card-white {
+  background: #ffffff;
+  color: #1e1e2f;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* Card hover efek */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon & teks */
+.dashboard-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card-title {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-card-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* =========================
+   TugasPage - Card
+========================= */
+.dashboard-cards-wrapper-tugas {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.tugas-card {
+  min-width: 450px;
+  max-width: 550px;
+  flex: 0 0 auto;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tugas-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.tugas-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.tugas-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.kirim-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #6b21a8, #9333ea);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.kirim-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #9333ea, #6b21a8);
+}
+
+.tugas-card .mt-2 {
+  background: #f5f5f5;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   JadwalPage - Card
+========================= */
+.kelas-select-wrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.kelas-select-wrapper select {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.jadwal-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.jadwal-card {
+  min-width: 450px;
+  max-width: 300px;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.jadwal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.jadwal-card h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.jadwal-card p {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+/* =========================
+   Modal Tambah / Kirim Tugas
+========================= */
+.dashboard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.dashboard-modal-content {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  color: #1e1e2f;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dashboard-modal textarea {
+  width: 100%;
+  height: 120px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+.dashboard-modal input[type="file"] {
+  margin-bottom: 1rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.modal-buttons .close-btn {
+  background: #333;
+  color: #fff;
+}
+
+.modal-buttons button:hover {
+  opacity: 0.8;
+}
+
+/* =========================
+   Daftar Tugas / List
+========================= */
+.dashboard-tugas-list h2 {
+  margin-bottom: 1rem;
+}
+
+.dashboard-tugas-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-tugas-item {
+  background: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-tugas-item strong {
+  font-size: 1.1rem;
+}
+
+/* =========================
+   Animasi
+========================= */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1200px) {
+  .tugas-card {
+    min-width: 400px;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tugas-card {
+    min-width: 350px;
+    max-width: 450px;
+  }
+  .jadwal-card {
+    min-width: 200px;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tugas-card {
+    min-width: 280px;
+    max-width: 100%;
+  }
+  .jadwal-card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .dashboard-cards-row {
+    flex-direction: column;
+  }
+}

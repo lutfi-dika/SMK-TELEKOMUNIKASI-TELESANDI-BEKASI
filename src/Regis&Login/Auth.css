@@ -1,0 +1,119 @@
+/* ==== CONTAINER ==== */
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 100px auto;
+  background: #ffffff;
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-2px);
+}
+
+.form-container h2 {
+  margin-bottom: 25px;
+  color: #0077ff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* ==== FORM ==== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input,
+select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #0077ff;
+}
+
+/* ==== BUTTON ==== */
+button {
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #005fcc;
+}
+
+/* ==== ERROR ==== */
+.error {
+  color: #e63946;
+  margin-top: -5px;
+  font-size: 14px;
+}
+
+/* ==== REDIRECT TEXT ==== */
+.redirect-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.redirect-text a {
+  color: #0077ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.redirect-text a:hover {
+  text-decoration: underline;
+}
+
+/* ==== MOBILE RESPONSIVE ==== */
+@media (max-width: 480px) {
+  .form-container {
+    max-width: 90%;
+    margin: 40px auto;
+    padding: 25px 18px;
+    border-radius: 14px;
+  }
+
+  form {
+    gap: 12px; /* jarak lebih rapat di HP */
+  }
+
+  input,
+  select {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 7px;
+  }
+
+  .form-container h2 {
+    font-size: 19px;
+  }
+
+  .redirect-text {
+    font-size: 13px;
+  }
+}

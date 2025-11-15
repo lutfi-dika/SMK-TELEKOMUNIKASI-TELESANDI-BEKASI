@@ -1,35 +1,102 @@
 import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../content/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const toggleMenu = () => setOpen(!open);
-    const closeMenu = () => setOpen(false);
+    // 🔹 Scroll ke bagian tertentu
+    const handleScroll = (id) => {
+        // Jika di halaman lain, pindah ke home dulu baru scroll
+        if (location.pathname !== "/") {
+            navigate("/");
+            setTimeout(() => {
+                const section = document.getElementById(id);
+                if (section) section.scrollIntoView({ behavior: "smooth" });
+            }, 300);
+        } else {
+            const section = document.getElementById(id);
+            if (section) section.scrollIntoView({ behavior: "smooth" });
+        }
+        setMenuOpen(false);
+    };
+
+    // 🔹 Logout + redirect ke home
+    const handleLogout = () => {
+        logout();
+        navigate("/"); // langsung ke home
+        setMenuOpen(false);
+    };
 
     return (
         <nav className="navbar">
             <div className="nav-container">
-                <div className="logo">SMK TELESANDI</div>
+                {/* Logo */}
+                <div className="logo" onClick={() => navigate("/")}>
+                    SMK TELESANDI
+                </div>
 
-                {/* Menu Links */}
-                <ul className={`nav-links ${open ? "open" : ""}`}>
-                    {/* Close button untuk mobile */}
-                    <li className="close-btn" onClick={closeMenu}>×</li>
+                {/* Navigation Links */}
+                <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+                    <li><a onClick={() => handleScroll("home")}>Home</a></li>
+                    <li><a onClick={() => handleScroll("about")}>About</a></li>
+                    <li><a onClick={() => handleScroll("visi")}>Visi Misi</a></li>
+                    <li><a onClick={() => handleScroll("gallery")}>Gallery</a></li>
+                    <li><a onClick={() => handleScroll("news")}>Berita</a></li>
+                    <li><a onClick={() => handleScroll("Contact")}>Contact</a></li>
 
-                    <li><a href="#home" onClick={closeMenu}>Home</a></li>
-                    <li><a href="#about" onClick={closeMenu}>About</a></li>
-                    <li><a href="#visi" onClick={closeMenu}>Visi & Misi</a></li>
-                    <li><a href="#gallery" onClick={closeMenu}>Gallery</a></li>
-                    <li><a href="#news" onClick={closeMenu}>Berita</a></li>
-                    <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
+                    {/* 🔐 Kondisi login */}
+                    {!user ? (
+                        <>
+                            <li>
+                                <button
+                                    className="login-btn"
+                                    onClick={() => {
+                                        navigate("/login");
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    Login
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="regis-btn"
+                                    onClick={() => {
+                                        navigate("/register");
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    Register
+                                </button>
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li>
+                                <Link
+                                    to={user.role === "guru" ? "/dashboard-guru" : "/dashboard-murid"}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    Dashboard
+                                </Link>
+                            </li>
+                            <li>
+                                <button className="logout-btn" onClick={handleLogout}>
+                                    Logout
+                                </button>
+                            </li>
+                        </>
+                    )}
                 </ul>
 
-                {/* Hamburger menu */}
-                <div className={`hamburger ${open ? "active" : ""}`} onClick={toggleMenu}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                {/* 🔹 Hamburger menu (mobile only) */}
+                <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? "✖" : "☰"}
                 </div>
             </div>
         </nav>

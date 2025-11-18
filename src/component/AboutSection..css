@@ -1,7 +1,20 @@
+/* Hilangkan kemungkinan horizontal scroll */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ABOUT SECTION */
 .about-section {
-  padding: 80px 50px;
+  padding: 80px 30px; /* padding kiri-kanan diperkecil */
   color: #333;
   margin-bottom: 6%;
+  width: 100%;
 }
 
 .about-container {
@@ -12,10 +25,13 @@
   margin: auto;
   gap: 50px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
+/* TEKS */
 .about-text {
   flex: 1 1 500px;
+  min-width: 0; /* anti overflow */
 }
 
 .about-text h2 {
@@ -30,13 +46,17 @@
   margin-bottom: 15px;
 }
 
+/* GAMBAR */
 .about-image {
   flex: 1 1 400px;
+  min-width: 0; /* mencegah overflow */
 }
 
 .about-image img {
   width: 100%;
+  max-width: 100%; /* fix */
   height: auto;
+  display: block; /* fix overflow */
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -56,6 +76,9 @@
 }
 
 @media (max-width: 768px) {
+  .about-section {
+    padding: 50px 20px; /* lebih kecil di mobile */
+  }
   .about-container {
     flex-direction: column;
     text-align: center;

@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Navbar from "./component/Navbar";
 import HeroSection from "./component/HeroSection";
 import Marquee from "./component/Marquee";
 import AboutSection from "./component/AboutSection";
 import VisiMisiSection from "./component/VisiMisiSection";
 import GallerySection from "./component/Gallery";
+import EskulSection from "./component/EskulSection";
 import NewsSection from "./component/NewsSection";
 import ContactSection from "./component/Contact";
 import CTASection from "./component/CTASection";
 import Footer from "./component/Footer";
+
 import Login from "./Regis&Login/Login";
 import Register from "./Regis&Login/Regis";
 import DashboardMurid from "./Regis&Login/DashboardMurid";
 import DashboardGuru from "./Regis&Login/DashboardGuru";
 import TugasPage from "./Regis&Login/TugasPage";
 import JadwalPage from "./Regis&Login/JadwalPage";
+
 import PrivateRoute from "./content/PrivateRoute";
 import { AuthProvider } from "./content/AuthContext";
+
+import EskulDetail from "./detail/EskulDetail";
+
 import "./App.css";
 
 function App() {
   const BASE_URL = import.meta.env.BASE_URL;
 
-  // ====== State Tugas ======
+  // ========== STATE TUGAS ==========
   const [tugasList, setTugasList] = useState(() => {
     const saved = localStorage.getItem("tugasList");
     return saved ? JSON.parse(saved) : [];
@@ -43,16 +50,19 @@ function App() {
       status: "Belum dikumpulkan",
       submissions: [],
     };
-    setTugasList(prev => [...prev, newTugas]);
+    setTugasList((prev) => [...prev, newTugas]);
   };
 
   const handleKumpulTugas = (idTugas, namaMurid, file) => {
-    setTugasList(prev =>
-      prev.map(tugas =>
+    setTugasList((prev) =>
+      prev.map((tugas) =>
         tugas.id === idTugas
           ? {
             ...tugas,
-            submissions: [...(tugas.submissions || []), { namaMurid, file, waktu: new Date().toLocaleString() }],
+            submissions: [
+              ...(tugas.submissions || []),
+              { namaMurid, file, waktu: new Date().toLocaleString() },
+            ],
             status: "Sudah dikumpulkan",
           }
           : tugas
@@ -60,7 +70,7 @@ function App() {
     );
   };
 
-  // ====== State Jadwal ======
+  // ========== STATE JADWAL ==========
   const [jadwalList, setJadwalList] = useState(() => {
     const saved = localStorage.getItem("jadwalList");
     return saved ? JSON.parse(saved) : [];
@@ -72,21 +82,23 @@ function App() {
 
   const handleTambahJadwal = (jadwalBaru) => {
     const newJadwal = { id: Date.now(), ...jadwalBaru };
-    setJadwalList(prev => [...prev, newJadwal]);
+    setJadwalList((prev) => [...prev, newJadwal]);
   };
 
   const handleEditJadwal = (id, dataBaru) => {
-    setJadwalList(prev => prev.map(j => j.id === id ? { ...j, ...dataBaru } : j));
+    setJadwalList((prev) =>
+      prev.map((j) => (j.id === id ? { ...j, ...dataBaru } : j))
+    );
   };
 
   const handleHapusJadwal = (id) => {
-    setJadwalList(prev => prev.filter(j => j.id !== id));
+    setJadwalList((prev) => prev.filter((j) => j.id !== id));
   };
 
-  // ====== Loading ======
+  // ========== LOADING ==========
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -103,67 +115,87 @@ function App() {
     <Router basename={BASE_URL}>
       <AuthProvider>
         <Navbar />
-        <Routes>
-          {/* Halaman utama */}
-          <Route path="/" element={
-            <>
-              <HeroSection />
-              <Marquee />
-              <AboutSection />
-              <VisiMisiSection />
-              <GallerySection />
-              <NewsSection />
-              <ContactSection />
-              <CTASection />
-              <Footer />
-            </>
-          } />
 
-          {/* Auth */}
+        <Routes>
+          {/* ================== HOME ================== */}
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <Marquee />
+                <AboutSection />
+                <VisiMisiSection />
+                <GallerySection />
+                <EskulSection />
+                <NewsSection />
+                <ContactSection />
+                <CTASection />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* ========== DETAIL ESKUL BARU ========== */}
+          <Route path="/eskul/:id" element={<EskulDetail />} />
+
+          {/* ================== AUTH ================== */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Dashboard Guru */}
-          <Route path="/dashboard-guru" element={
-            <PrivateRoute role="guru">
-              <DashboardGuru
-                tugasList={tugasList}
-                onTambahTugas={handleTambahTugas}
-                jadwalList={jadwalList}
-                onTambahJadwal={handleTambahJadwal}
-                onEditJadwal={handleEditJadwal}
-                onHapusJadwal={handleHapusJadwal}
-              />
-            </PrivateRoute>
-          } />
+          {/* ================== DASHBOARD GURU ================== */}
+          <Route
+            path="/dashboard-guru"
+            element={
+              <PrivateRoute role="guru">
+                <DashboardGuru
+                  tugasList={tugasList}
+                  onTambahTugas={handleTambahTugas}
+                  jadwalList={jadwalList}
+                  onTambahJadwal={handleTambahJadwal}
+                  onEditJadwal={handleEditJadwal}
+                  onHapusJadwal={handleHapusJadwal}
+                />
+              </PrivateRoute>
+            }
+          />
 
-          {/* Dashboard Murid */}
-          <Route path="/dashboard-murid" element={
-            <PrivateRoute role="murid">
-              <DashboardMurid
-                tugasList={tugasList}
-                jadwalList={jadwalList}
-                onKumpulTugas={handleKumpulTugas}
-              />
-            </PrivateRoute>
-          } />
+          {/* ================== DASHBOARD MURID ================== */}
+          <Route
+            path="/dashboard-murid"
+            element={
+              <PrivateRoute role="murid">
+                <DashboardMurid
+                  tugasList={tugasList}
+                  jadwalList={jadwalList}
+                  onKumpulTugas={handleKumpulTugas}
+                />
+              </PrivateRoute>
+            }
+          />
 
-          {/* Halaman semua tugas */}
-          <Route path="/tugas" element={
-            <PrivateRoute role="murid">
-              <TugasPage
-                tugasList={tugasList}
-                onKumpulTugas={handleKumpulTugas}
-              />
-            </PrivateRoute>
-          } />
+          {/* ================== TUGAS ================== */}
+          <Route
+            path="/tugas"
+            element={
+              <PrivateRoute role="murid">
+                <TugasPage
+                  tugasList={tugasList}
+                  onKumpulTugas={handleKumpulTugas}
+                />
+              </PrivateRoute>
+            }
+          />
 
-          {/* Halaman jadwal */}
-          <Route path="/jadwal" element={
-            <PrivateRoute role="murid">
-              <JadwalPage jadwalList={jadwalList} />
-            </PrivateRoute>
-          } />
+          {/* ================== JADWAL ================== */}
+          <Route
+            path="/jadwal"
+            element={
+              <PrivateRoute role="murid">
+                <JadwalPage jadwalList={jadwalList} />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </Router>

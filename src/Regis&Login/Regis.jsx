@@ -9,59 +9,24 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("murid");
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    setError("");
-
-    const success = await register(name, email, password, role);
-    if (success) {
-      alert("Registrasi berhasil! Silakan login.");
-      navigate("/login"); // ✅ otomatis ikut base URL
-    } else {
-      setError("Email sudah digunakan!");
-    }
+    if (!register(name, email, password))
+      return alert("Email sudah dipakai / milik guru");
+    navigate("/login");
   };
 
   return (
     <div className="form-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nama Lengkap"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email Sekolah"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Kata Sandi"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="murid">Murid</option>
-          <option value="guru">Guru</option>
-        </select>
-
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Daftar</button>
+      <form onSubmit={submit}>
+        <h2>Register Murid</h2>
+        <input placeholder="Nama" onChange={(e)=>setName(e.target.value)} />
+        <input placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
+        <button>Daftar</button>
+        <p>Sudah punya akun? <Link to="/login">Login</Link></p>
       </form>
-      <p>
-        Sudah punya akun? <Link to="/login">Login</Link>
-      </p>
     </div>
   );
 };

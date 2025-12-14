@@ -1,0 +1,37 @@
+.eskul-detail-container {
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.back-btn {
+  text-decoration: none;
+  color: #006edc;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.detail-card {
+  display: flex;
+  gap: 25px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.detail-img {
+  width: 350px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.detail-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.desc {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
